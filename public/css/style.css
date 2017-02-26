@@ -1,0 +1,134 @@
+.container {
+    border: 2px solid black;
+    align-content: stretch;
+    position: relative;
+}
+
+header {
+    font-family: Arial, Verdana, sans-serif;
+    background: #EE6E73;
+    text-align: center;
+    text-justify: center;
+    color: #484848;
+    font-size: 70px;
+    font-size-adjust: center;
+    overflow: hidden;
+    height: 80px;
+
+}
+.pagination {
+  margin-top: 10px;
+    position: relative;
+    z-index: 999;
+    overflow: hidden;
+    text-align: center;
+    text-justify: center;
+    height: 40px;
+}
+
+.leftnav {
+    float: left;
+    width: 250px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.postarea {
+    height: 100%;
+    overflow: auto;
+    width: auto;
+}
+
+footer {
+    clear: both;
+    text-align: center;
+}
+
+div a {
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+    padding-right: 100px;
+}
+
+li {
+    list-style-type: none;
+    display: block;
+    padding: 20px;
+    border-bottom: 1px solid #EE6E73;
+}
+li a{
+  color: pink;
+  font-size:  0.8em;
+
+}
+
+li:hover {
+    transform: linear all 0.40s;
+    margin-left: 10px;
+    color: red;
+    font-size: 1em;
+}
+
+div ul li a:hover {
+    color: red;
+    font-size: 1em;
+}
+
+table {
+  display: flex;
+}
+
+td {
+
+  padding-bottom: 20px;
+}
+
+h3{
+  color: pink;
+
+}
+.button {
+  font-size: 1em;
+	color: #fae7e9;
+	border: solid 1px #b73948;
+	background: #da5867;
+  height: 35px;
+  width: 225px;
+  align-self: center;
+}
+body {
+  background-image: url("bkg.png");
+}
+/*tablet*/
+
+@media only screen and (min-width:480px) and (max-width:776px) {
+    .postarea {
+        border: none;
+        margin-left: 220px;
+        overflow: auto;
+    }
+    .leftnav {
+        visibility: hidden;
+        position: absolute;
+
+    }
+}
+
+/*phone*/
+
+@media only screen and (max-width:470px) {
+    .postarea {
+        border: none;
+        margin-left: -5px;
+        overflow: auto;
+    }
+    .leftnav {
+        visibility: hidden;
+        position: absolute;
+    }
+    header {
+        font-size: 20px;
+        height: 30px;
+    }
+}

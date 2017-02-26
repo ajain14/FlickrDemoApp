@@ -1,0 +1,87 @@
+<html>
+<title>Gallery</title>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
+    <script>
+      var page;
+      var titles =[];
+      function next(){
+        $('#images').empty();
+        this.page = this.page + 1;
+        mainViewLoad(this.page);
+      }
+      function prev(){
+        if(this.page>1){
+        $('#images').empty();
+        this.page = this.page - 1;
+        mainViewLoad(this.page);
+        }
+      }
+      function submit(id){
+      //   var x = document.getElementById("comment").value;
+      //
+      //   var y = "$col" + id;
+      //   console.log(x + "" + y);
+      // //  $y.text(x);
+      //   $("#col").text(x);
+      //   document.getElementById("comment").value="";
+
+      }
+        function mainViewLoad(page) {
+            this.page = page;
+            var imgs = "";
+            $('#images').append(null);
+            $.ajax({
+                url: 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=a5e95177da353f58113fd60296e1d250&user_id=24662369@N07&format=json&nojsoncallback=1&page=' + this.page,
+                type: "GET",
+            }).done(function(response) {
+                $.each(response.photos.photo, function(farm, id, isfamily, isfriend, ispublic, owner, secret, server, title) {
+                    // var sampleImgObj = { "id": id, "owner": owner, "secret": secret, "server": server, "farm": farm, "title": title, "ispublic": ispublic, "isfriend": isfriend, "isfamily": isfamily };
+                    var urlDefault = 'https://farm' + id.farm + '.staticflickr.com/' + id.server + '/' + id.id + '_' + id.secret + '.jpg';
+                    var urlLarge = 'https://farm' + id.farm + '.staticflickr.com/' + id.server + '/' + id.id + '_' + id.secret + '_b.jpg';
+                    imgs += `<tr id="${id.id}"><td><img src="` + urlDefault + `" ></td><td><h3>Tell us what do you think about this image!!</h3>` +
+                    `<textarea rows=8 cols=40 style="background:transparent;color:pink;font-size:1em" id="comment" />` +
+                    `<br /><br /><input class="button" type="button" onclick="submit(${id.id})" value="Submit Reviews" id="rev" /></td>` ;
+                });
+                $('#images').append(imgs);
+                console.log("Titles " + this.titles);
+            });
+        }
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body onload="mainViewLoad(1)">
+    <div class="container">
+
+        <div>
+            <header>
+                Photo Gallery
+            </header>
+        </div>
+
+        <div class="leftnav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/gridview">Slider</a></li>
+            </ul>
+        </div>
+        <div class="pagination">
+          <input class="button" type="button" onclick="prev()" value="❮ Previous" />
+          <input class="button" type="button" onclick="next()" value="Next ❯" />
+        </div>
+        <div class="postarea">
+            <table id="images" class="table">
+            </table>
+        </div>
+        <div>
+            <footer> Copyright @2017, all rights reserved </footer>
+        </div>
+    </div>
+</body>
+</html>
