@@ -17,6 +17,7 @@ var app = express();
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
+
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
@@ -33,3 +34,4 @@ app.get('/', function(req, res) {
 app.get('/gridview', function(req, res) {
   res.sendFile(__dirname+'/gridview.html');
 });
+app.use('/', express.static('public'))
