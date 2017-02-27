@@ -3,6 +3,6 @@ application:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: Explorer123
-  host: Explorer123
+  name: FlickrDemoApp
+  host: FlickrDemoApp
   disk-quota: 1024M

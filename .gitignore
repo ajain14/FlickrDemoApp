@@ -1,2 +1,4 @@
 node_modules
 notinc
+.DS_Store
+.git
